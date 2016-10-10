@@ -1,0 +1,10 @@
+{
+    "require": {
+	"yiisoft/yii": "*"
+    },
+    "autoload": {
+	"psr-0": {
+	    "config": "./"
+	}
+    }
+}
