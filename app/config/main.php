@@ -5,29 +5,35 @@
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
+$projectDir = dirname(__FILE__).'/../../';
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Web Application',
 
 	// preloading 'log' component
-	'preload'=>array('log'),
+	'preload'=>array('log', 'user'),
 
-	// autoloading model and component classes
+    // autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
 	),
 
+    'aliases' => array(
+        'vendor' => $projectDir.'/vendor',
+    ),
+
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
-		/*
-		'gii'=>array(
-			'class'=>'system.gii.GiiModule',
-			'password'=>'Enter Your Password Here',
-			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>array('127.0.0.1','::1'),
-		),
-		*/
+
+        'gii'=>array(
+            'class'=>'system.gii.GiiModule',
+            'password'=>'gii%#@',
+            // If removed, Gii defaults to localhost only. Edit carefully to taste.
+            'ipFilters'=>array('127.0.0.1', '192.168.1.*','::1'),
+        ),
+        'user',
+
 	),
 
 	// application components
@@ -44,6 +50,8 @@ return array(
 			'urlFormat'=>'path',
 			'showScriptName'=>false,
 			'rules'=>array(
+			    '/login' => '/user/user/login',
+			    '/logout' => '/user/user/logout',
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
